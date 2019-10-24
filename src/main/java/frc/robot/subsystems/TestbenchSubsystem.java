@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,9 +25,11 @@ public class TestbenchSubsystem extends Subsystem {
 
   // motor controllers
   public WPI_TalonSRX talonsrx0 = new WPI_TalonSRX(RobotMap.TALONSRX0_CAN);
+  public CANSparkMax sparkmax0 = new CANSparkMax(RobotMap.SPARKMAX0_CAN, MotorType.kBrushless);
   
   // button board
-  public DigitalInput talonSwitch = new DigitalInput(RobotMap.TALONSRX0_DIO);
+  public DigitalInput talonsrx0Switch = new DigitalInput(RobotMap.TALONSRX0_DIO);
+  public DigitalInput sparkmax0Switch = new DigitalInput(RobotMap.SPARKMAX0_DIO);
 
   @Override
   public void initDefaultCommand() {

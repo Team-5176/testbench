@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class TestbenchCommand extends Command {
   public TestbenchCommand() {
@@ -25,7 +26,17 @@ public class TestbenchCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if ()
+    if (Robot.testbenchSubsystem.talonsrx0Switch.get()) {
+      Robot.testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_ONSPEED);
+    } else {
+      Robot.testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_OFFSPEED);
+    }
+
+    if (Robot.testbenchSubsystem.sparkmax0Switch.get()) {
+      Robot.testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_ONSPEED);
+    } else {
+      Robot.testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_OFFSPEED);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
