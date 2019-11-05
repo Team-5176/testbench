@@ -21,6 +21,7 @@ public class RobotMap {
 
   public static final int TALONSRX0_CAN = 2;
   public static final int SPARKMAX0_CAN = 3;
+  public static final int AIR0_CAN = 1;
 
   public static final double TALONSRX0_ONSPEED = 1.00;
   public static final double TALONSRX0_OFFSPEED = 0.00;
