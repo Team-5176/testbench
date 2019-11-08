@@ -8,10 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
+// import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 // import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import frc.robot.commands.ExampleCommand;
 // import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.TestbenchSubsystem;
@@ -28,6 +28,8 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static TestbenchSubsystem testbenchSubsystem;
 
+  public static FakeDS ds;
+
   // Command autonomousCommand;
   // SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     testbenchSubsystem = new TestbenchSubsystem();
     oi = new OI();
+    ds = new FakeDS();
+    ds.start();
     // chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", chooser);

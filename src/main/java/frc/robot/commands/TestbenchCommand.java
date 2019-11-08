@@ -7,7 +7,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
+// import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -46,6 +46,12 @@ public class TestbenchCommand extends Command {
       Robot.testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_ONSPEED);
     } else {
       Robot.testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_OFFSPEED);
+    }
+    
+    if (Robot.testbenchSubsystem.air0Switch.get() != air0InitialState) {
+      Robot.testbenchSubsystem.air0.setClosedLoopControl(true);
+    } else {
+      Robot.testbenchSubsystem.air0.setClosedLoopControl(false);
     }
   }
 
