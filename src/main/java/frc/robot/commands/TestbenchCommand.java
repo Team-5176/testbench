@@ -45,6 +45,7 @@ public class TestbenchCommand extends Command {
     // } else {
     //   Robot.testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_OFFSPEED);
     // }
+    DriverStation.reportWarning("key:"+Robot.testbenchSubsystem.keySwitch.get(), false);
 
     if (Robot.testbenchSubsystem.victorsp0Switch.get() != victorsp0InitialState) {
       Robot.testbenchSubsystem.victorsp0.set(RobotMap.VICTORSP0_ONSPEED);

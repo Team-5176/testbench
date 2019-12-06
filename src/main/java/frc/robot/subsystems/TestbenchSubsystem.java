@@ -40,6 +40,7 @@ public class TestbenchSubsystem extends Subsystem {
   public DigitalInput sparkmax0Switch = new DigitalInput(RobotMap.SPARKMAX0_DIO);
   public DigitalInput air0Switch = new DigitalInput(RobotMap.AIR0_DIO);
   public DigitalInput succc0Switch = new DigitalInput(RobotMap.SUCCC0_DIO);
+  public DigitalInput keySwitch = new DigitalInput(RobotMap.KEY_DIO);
 
   @Override
   public void initDefaultCommand() {

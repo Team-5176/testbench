@@ -19,6 +19,7 @@ public class RobotMap {
   // public static final int TALONSRX0_DIO = 2;
   public static final int VICTORSP0_DIO = 2;
   public static final int SPARKMAX0_DIO = 3;
+  public static final int KEY_DIO = 9;
 
   // public static final int TALONSRX0_CAN = 2;
   public static final int SPARKMAX0_CAN = 3;

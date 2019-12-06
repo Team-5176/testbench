@@ -35,22 +35,24 @@ public class FakeDS {
       short sendCount = 0;
       int initCount = 0;
       while (!Thread.currentThread().isInterrupted()) {
-        try {
-          Thread.sleep(20);
-          generateEnabledDsPacket(sendData, sendCount++);
-          // ~50 disabled packets are required to make the robot actually enable
-          // 1 is definitely not enough.
-          if (initCount < 50) {
-            initCount++;
-            sendData[3] = 0;
+        if (Robot.testbenchSubsystem.keySwitch.get() == false) {
+          try {
+            Thread.sleep(20);
+            generateEnabledDsPacket(sendData, sendCount++);
+            // ~50 disabled packets are required to make the robot actually enable
+            // 1 is definitely not enough.
+            if (initCount < 50) {
+              initCount++;
+              sendData[3] = 0;
+            }
+            packet.setData(sendData);
+            socket.send(packet);
+          } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+          } catch (IOException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
           }
-          packet.setData(sendData);
-          socket.send(packet);
-        } catch (InterruptedException ex) {
-          Thread.currentThread().interrupt();
-        } catch (IOException ex) {
-          // TODO Auto-generated catch block
-          ex.printStackTrace();
         }
       }
       socket.close();

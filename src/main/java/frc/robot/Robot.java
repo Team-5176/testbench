@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   public static TestbenchSubsystem testbenchSubsystem;
 
   public static FakeDS ds;
+  private boolean haveIStartedFakeDS = false;
 
   // Command autonomousCommand;
   // SendableChooser<Command> chooser = new SendableChooser<>();
@@ -42,7 +43,10 @@ public class Robot extends TimedRobot {
     testbenchSubsystem = new TestbenchSubsystem();
     oi = new OI();
     ds = new FakeDS();
-    ds.start();
+    // if (testbenchSubsystem.keySwitch.get() == true) {
+    //   ds.start();
+    //   haveIStartedFakeDS = true;
+    // }
     // chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", chooser);
@@ -72,6 +76,12 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
+    if (haveIStartedFakeDS == false) {
+      if (testbenchSubsystem.keySwitch.get() == false) {
+        ds.start();
+        haveIStartedFakeDS = true;
+      }
+    }
   }
 
   /**
