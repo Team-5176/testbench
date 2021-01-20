@@ -35,7 +35,7 @@ public class FakeDS {
       short sendCount = 0;
       int initCount = 0;
       while (!Thread.currentThread().isInterrupted()) {
-        if (Robot.testbenchSubsystem.keySwitch.get() == false) {
+        if (Robot.m_robotContainer.testbenchSubsystem.keySwitch.get() == false) {
           try {
             Thread.sleep(20);
             generateEnabledDsPacket(sendData, sendCount++);
