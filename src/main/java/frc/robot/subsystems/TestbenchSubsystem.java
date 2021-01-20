@@ -8,11 +8,13 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -28,11 +30,21 @@ public class TestbenchSubsystem extends Subsystem {
   // motor controllers
   // public WPI_TalonSRX talonsrx0 = new WPI_TalonSRX(RobotMap.TALONSRX0_CAN);
   public VictorSP victorsp0 = new VictorSP(RobotMap.VICTORSP0_PWM);
-  public CANSparkMax sparkmax0 = new CANSparkMax(RobotMap.SPARKMAX0_CAN, MotorType.kBrushless);
+  //public CANSparkMax sparkmax0 = new CANSparkMax(RobotMap.SPARKMAX0_CAN, MotorType.kBrushless);
   public VictorSP succc0 = new VictorSP(RobotMap.SUCCC0_PWM);
 
   // compressor
   public Compressor air0 = new Compressor(RobotMap.AIR0_CAN);
+
+  // solenoids
+  public Solenoid s0 = new Solenoid(0);
+  public Solenoid s1 = new Solenoid(1);
+  public Solenoid s2 = new Solenoid(2);
+  public Solenoid s3 = new Solenoid(3);
+  public Solenoid s4 = new Solenoid(4);
+  public Solenoid s5 = new Solenoid(5);
+  public Solenoid s6 = new Solenoid(6);
+  public Solenoid s7 = new Solenoid(7);
   
   // button board
   // public DigitalInput talonsrx0Switch = new DigitalInput(RobotMap.TALONSRX0_DIO);
@@ -41,6 +53,8 @@ public class TestbenchSubsystem extends Subsystem {
   public DigitalInput air0Switch = new DigitalInput(RobotMap.AIR0_DIO);
   public DigitalInput succc0Switch = new DigitalInput(RobotMap.SUCCC0_DIO);
   public DigitalInput keySwitch = new DigitalInput(RobotMap.KEY_DIO);
+
+  public AnalogInput swerve0Encoder = new AnalogInput(RobotMap.SWERVE0_ENCODER_ANALOG);
 
   @Override
   public void initDefaultCommand() {

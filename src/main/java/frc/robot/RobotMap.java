@@ -23,7 +23,7 @@ public class RobotMap {
 
   // public static final int TALONSRX0_CAN = 2;
   public static final int SPARKMAX0_CAN = 3;
-  public static final int AIR0_CAN = 1;
+  public static final int AIR0_CAN = 0;
 
   public static final int SUCCC0_PWM = 0;
   public static final int VICTORSP0_PWM = 1;
@@ -36,6 +36,8 @@ public class RobotMap {
   public static final double SPARKMAX0_OFFSPEED = 0.00;
   public static final double SUCCC0_ONSPEED = 1.00;
   public static final double SUCCC0_OFFSPEED = 0.00;
+
+  public static final int SWERVE0_ENCODER_ANALOG = 0;
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.

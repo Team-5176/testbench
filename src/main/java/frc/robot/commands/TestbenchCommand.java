@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 // import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -45,6 +46,10 @@ public class TestbenchCommand extends Command {
     // } else {
     //   Robot.testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_OFFSPEED);
     // }
+    // boolean thing = SmartDashboard.getBoolean("reset reed", false);
+    // if (thing) {
+    //   SmartDashboard.putBoolean("reset reed", false);
+    // }
     DriverStation.reportWarning("key:"+Robot.testbenchSubsystem.keySwitch.get(), false);
 
     if (Robot.testbenchSubsystem.victorsp0Switch.get() != victorsp0InitialState) {
@@ -60,11 +65,11 @@ public class TestbenchCommand extends Command {
       Robot.testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_OFFSPEED);
     }
     
-    if (Robot.testbenchSubsystem.air0Switch.get() != air0InitialState) {
-      Robot.testbenchSubsystem.air0.setClosedLoopControl(true);
-    } else {
-      Robot.testbenchSubsystem.air0.setClosedLoopControl(false);
-    }
+    // if (Robot.testbenchSubsystem.air0Switch.get() != air0InitialState) {
+    //   Robot.testbenchSubsystem.air0.setClosedLoopControl(true);
+    // } else {
+    //   Robot.testbenchSubsystem.air0.setClosedLoopControl(false);
+    // }
 
     if (Robot.testbenchSubsystem.succc0Switch.get() != succc0InitialState) {
       Robot.testbenchSubsystem.succc0.set(RobotMap.SUCCC0_ONSPEED);
@@ -73,6 +78,11 @@ public class TestbenchCommand extends Command {
       Robot.testbenchSubsystem.succc0.set(RobotMap.SUCCC0_OFFSPEED);
       DriverStation.reportWarning("SUCCC0_OFF", false);
     }
+
+    Robot.testbenchSubsystem.s0.set(true);
+    Robot.testbenchSubsystem.s1.set(true);
+    Robot.testbenchSubsystem.s2.set(true);
+    Robot.testbenchSubsystem.s3.set(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
