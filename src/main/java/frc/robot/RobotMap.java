@@ -16,20 +16,20 @@ package frc.robot;
 public class RobotMap {
   public static final int SUCCC0_DIO = 0;
   public static final int AIR0_DIO = 1;
-  // public static final int TALONSRX0_DIO = 2;
+  public static final int TALONSRX0_DIO = 2;
   public static final int VICTORSP0_DIO = 2;
   public static final int SPARKMAX0_DIO = 3;
   public static final int KEY_DIO = 9;
 
-  // public static final int TALONSRX0_CAN = 2;
+  public static final int TALONSRX0_CAN = 2;
   public static final int SPARKMAX0_CAN = 3;
   public static final int AIR0_CAN = 0;
 
   public static final int SUCCC0_PWM = 0;
   public static final int VICTORSP0_PWM = 1;
 
-  // public static final double TALONSRX0_ONSPEED = 1.00;
-  // public static final double TALONSRX0_OFFSPEED = 0.00;
+  public static final double TALONSRX0_ONSPEED = 1.00;
+  public static final double TALONSRX0_OFFSPEED = 0.00;
   public static final double VICTORSP0_ONSPEED = 1.00;
   public static final double VICTORSP0_OFFSPEED = 0.00;
   public static final double SPARKMAX0_ONSPEED = 1.00;

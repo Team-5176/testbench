@@ -16,7 +16,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.TestbenchSubsystem;
 
 public class TestbenchCommand extends CommandBase {
-  // private boolean talonsrx0InitialState = true;
+  private boolean talonsrx0InitialState = true;
   private TestbenchSubsystem testbenchSubsystem;
   private boolean victorsp0InitialState = true;
   private boolean sparkmax0InitialState = true;
@@ -31,7 +31,7 @@ public class TestbenchCommand extends CommandBase {
   // Called just before this Command runs the first time
   @Override
   public void initialize() {
-    // talonsrx0InitialState = testbenchSubsystem.talonsrx0Switch.get();
+    talonsrx0InitialState = testbenchSubsystem.talonsrx0Switch.get();
     victorsp0InitialState = testbenchSubsystem.victorsp0Switch.get();
     sparkmax0InitialState = testbenchSubsystem.sparkmax0Switch.get();
     air0InitialState = testbenchSubsystem.air0Switch.get();
@@ -41,16 +41,16 @@ public class TestbenchCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    // DriverStation.reportWarning("talonsrx0switch:" + testbenchSubsystem.talonsrx0Switch.get(), false);
-    // if (testbenchSubsystem.talonsrx0Switch.get() != talonsrx0InitialState) {
-    //   testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_ONSPEED);
-    // } else {
-    //   testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_OFFSPEED);
-    // }
-    // boolean thing = SmartDashboard.getBoolean("reset reed", false);
-    // if (thing) {
-    //   SmartDashboard.putBoolean("reset reed", false);
-    // }
+    DriverStation.reportWarning("talonsrx0switch:" + testbenchSubsystem.talonsrx0Switch.get(), false);
+    if (testbenchSubsystem.talonsrx0Switch.get() != talonsrx0InitialState) {
+      testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_ONSPEED);
+    } else {
+      testbenchSubsystem.talonsrx0.set(RobotMap.TALONSRX0_OFFSPEED);
+    }
+    boolean thing = SmartDashboard.getBoolean("reset reed", false);
+    if (thing) {
+      SmartDashboard.putBoolean("reset reed", false);
+    }
     DriverStation.reportWarning("key:"+testbenchSubsystem.keySwitch.get(), false);
 
     if (testbenchSubsystem.victorsp0Switch.get() != victorsp0InitialState) {
@@ -59,18 +59,18 @@ public class TestbenchCommand extends CommandBase {
       testbenchSubsystem.victorsp0.set(RobotMap.VICTORSP0_OFFSPEED);
     }
 
-    // // DriverStation.reportWarning("sparkmax0switch:" + testbenchSubsystem.sparkmax0Switch.get(), false);
-    // if (testbenchSubsystem.sparkmax0Switch.get() != sparkmax0InitialState) {
-    //   testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_ONSPEED);
-    // } else {
-    //   testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_OFFSPEED);
-    // }
+    // DriverStation.reportWarning("sparkmax0switch:" + testbenchSubsystem.sparkmax0Switch.get(), false);
+    if (testbenchSubsystem.sparkmax0Switch.get() != sparkmax0InitialState) {
+      testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_ONSPEED);
+    } else {
+      testbenchSubsystem.sparkmax0.set(RobotMap.SPARKMAX0_OFFSPEED);
+    }
     
-    // if (testbenchSubsystem.air0Switch.get() != air0InitialState) {
-    //   testbenchSubsystem.air0.setClosedLoopControl(true);
-    // } else {
-    //   testbenchSubsystem.air0.setClosedLoopControl(false);
-    // }
+    if (testbenchSubsystem.air0Switch.get() != air0InitialState) {
+      testbenchSubsystem.air0.setClosedLoopControl(true);
+    } else {
+      testbenchSubsystem.air0.setClosedLoopControl(false);
+    }
 
     if (testbenchSubsystem.succc0Switch.get() != succc0InitialState) {
       testbenchSubsystem.succc0.set(RobotMap.SUCCC0_ONSPEED);

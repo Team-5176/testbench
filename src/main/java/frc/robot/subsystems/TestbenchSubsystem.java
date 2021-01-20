@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-//import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
@@ -28,9 +28,9 @@ public class TestbenchSubsystem extends SubsystemBase {
   // here. Call these from Commands.
 
   // motor controllers
-  // public WPI_TalonSRX talonsrx0 = new WPI_TalonSRX(RobotMap.TALONSRX0_CAN);
+  public WPI_TalonSRX talonsrx0 = new WPI_TalonSRX(RobotMap.TALONSRX0_CAN);
   public VictorSP victorsp0 = new VictorSP(RobotMap.VICTORSP0_PWM);
-  //public CANSparkMax sparkmax0 = new CANSparkMax(RobotMap.SPARKMAX0_CAN, MotorType.kBrushless);
+  public CANSparkMax sparkmax0 = new CANSparkMax(RobotMap.SPARKMAX0_CAN, MotorType.kBrushless);
   public VictorSP succc0 = new VictorSP(RobotMap.SUCCC0_PWM);
 
   // compressor
@@ -47,7 +47,7 @@ public class TestbenchSubsystem extends SubsystemBase {
   public Solenoid s7 = new Solenoid(7);
   
   // button board
-  // public DigitalInput talonsrx0Switch = new DigitalInput(RobotMap.TALONSRX0_DIO);
+  public DigitalInput talonsrx0Switch = new DigitalInput(RobotMap.TALONSRX0_DIO);
   public DigitalInput victorsp0Switch = new DigitalInput(RobotMap.VICTORSP0_DIO);
   public DigitalInput sparkmax0Switch = new DigitalInput(RobotMap.SPARKMAX0_DIO);
   public DigitalInput air0Switch = new DigitalInput(RobotMap.AIR0_DIO);
