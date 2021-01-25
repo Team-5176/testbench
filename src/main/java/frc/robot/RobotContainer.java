@@ -26,7 +26,7 @@ public class RobotContainer {
 
   public final TestbenchCommand testbenchCommand = new TestbenchCommand(testbenchSubsystem);
 
-  public static FakeDS ds;
+  // public static FakeDS ds;
   public boolean haveIStartedFakeDS = false;
 
   // Command autonomousCommand;
@@ -34,7 +34,7 @@ public class RobotContainer {
 
   public RobotContainer() {
     testbenchSubsystem.setDefaultCommand(testbenchCommand);
-    ds = new FakeDS();
+    // ds = new FakeDS();
   }
 
   public Command getAutonomousCommand() {

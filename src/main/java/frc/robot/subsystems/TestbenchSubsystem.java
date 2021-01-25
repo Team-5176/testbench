@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.commands.TestbenchCommand;
+import frc.robot.util.MA3AnalogEncoder;
 
 /**
  * Add your docs here.
@@ -48,12 +49,13 @@ public class TestbenchSubsystem extends SubsystemBase {
   
   // button board
   public DigitalInput talonsrx0Switch = new DigitalInput(RobotMap.TALONSRX0_DIO);
-  public DigitalInput victorsp0Switch = new DigitalInput(RobotMap.VICTORSP0_DIO);
+  // public DigitalInput victorsp0Switch = new DigitalInput(RobotMap.VICTORSP0_DIO);
   public DigitalInput sparkmax0Switch = new DigitalInput(RobotMap.SPARKMAX0_DIO);
   public DigitalInput air0Switch = new DigitalInput(RobotMap.AIR0_DIO);
   public DigitalInput succc0Switch = new DigitalInput(RobotMap.SUCCC0_DIO);
   public DigitalInput keySwitch = new DigitalInput(RobotMap.KEY_DIO);
 
-  public AnalogInput swerve0Encoder = new AnalogInput(RobotMap.SWERVE0_ENCODER_ANALOG);
+  public MA3AnalogEncoder swerve0Encoder = new MA3AnalogEncoder(RobotMap.SWERVE0_ENCODER_ANALOG, RobotMap.SWERVE0_ENCODER_MAXV, RobotMap.SWERVE0_ENCODER_K);
+  // public AnalogInput swerve0Encoder = new AnalogInput(RobotMap.SWERVE0_ENCODER_ANALOG);
 
 }

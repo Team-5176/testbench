@@ -16,11 +16,13 @@ public class MA3AnalogEncoder {
     protected Rotation2d rotation_ = new Rotation2d();
     protected Rotation2d home_ = new Rotation2d();
     protected int num_rotations_ = 0;
+    protected double maxv;
+    protected double calibrationK;
 
     private CrashTrackingRunnable read_thread_ = new CrashTrackingRunnable() {
         @Override
         public void runCrashTracked() {
-            Rotation2d new_rotation = Rotation2d.fromRadians(2 * Math.PI * mAnalogInput.getVoltage() / 5.0);
+            Rotation2d new_rotation = Rotation2d.fromRadians(2 * Math.PI * mAnalogInput.getVoltage() / maxv);
 
             // Check for rollover
             synchronized (MA3AnalogEncoder.this) {
@@ -36,8 +38,10 @@ public class MA3AnalogEncoder {
         }
     };
 
-    public MA3AnalogEncoder(int port) {
+    public MA3AnalogEncoder(int port, double maxv, double calibrationK) {
         mAnalogInput = new AnalogInput(port);
+        this.maxv = maxv;
+        this.calibrationK = calibrationK;
         notifier_ = new Notifier(read_thread_);
         notifier_.startPeriodic(0.01); // 100 Hz
     }
@@ -57,6 +61,20 @@ public class MA3AnalogEncoder {
 
     public synchronized double getContinuousAngleDegrees() {
         return getRawAngle().getDegrees() + num_rotations_ * 360.0 + home_.getDegrees();
+    }
+
+    public synchronized double get5176Angle() {
+        double degrees = getRawAngle().getDegrees();
+        // sanity checks
+        if (degrees > 180d) degrees = 180d;
+        if (degrees < -180d) degrees = -180d;
+        double corrected = degrees + 180d + calibrationK;
+        if (corrected < 0d) {
+            corrected += 360d;
+        } else if (corrected > 360d) {
+            corrected -= 360d;
+        }
+        return corrected;
     }
 
 }

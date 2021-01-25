@@ -7,6 +7,14 @@
 
 package frc.robot;
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+import java.net.InetSocketAddress;
+import java.io.File;
+import java.io.IOException;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -21,6 +29,54 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static RobotContainer m_robotContainer;
+  // public static FakeDS fakeDS;
+  private Thread dsThread = new Thread(
+    () -> {
+      DatagramSocket socket;
+      try {
+        socket = new DatagramSocket();
+      } catch (SocketException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+        return;
+      }
+      InetSocketAddress addr = new InetSocketAddress("127.0.0.1", 1110);
+      byte[] sendData = new byte[6];
+      DatagramPacket packet = new DatagramPacket(sendData, 0, 6, addr);
+      short sendCount = 0;
+      int initCount = 0;
+      while (!Thread.currentThread().isInterrupted()) {
+        if (m_robotContainer.testbenchSubsystem.keySwitch.get() == false) {
+          try {
+            Thread.sleep(20);
+            generateEnabledDsPacket(sendData, sendCount++);
+            // ~50 disabled packets are required to make the robot actually enable
+            // 1 is definitely not enough.
+            if (initCount < 50) {
+              initCount++;
+              sendData[3] = 0;
+            }
+            packet.setData(sendData);
+            socket.send(packet);
+          } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+          } catch (IOException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+          }
+        }
+      }
+      socket.close();
+    });;
+
+  private void generateEnabledDsPacket(byte[] data, short sendCount) {
+    data[0] = (byte) (sendCount >> 8);
+    data[1] = (byte) sendCount;
+    data[2] = 0x01; // general data tag
+    data[3] = 0x04; // teleop enabled
+    data[4] = 0x10; // normal data request
+    data[5] = 0x00; // red 1 station
+  }
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,6 +87,29 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    dsThread.setDaemon(true);
+    dsThread.start();
+    // try {
+    //   Runtime.getRuntime().exec(new String[] { "touch", "/home/lvuser/testing123" });
+    // } catch (IOException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
+    // ProcessBuilder pb = new ProcessBuilder("touch", "/home/lvuser/testing123");
+    // try {
+    //   Process p = pb.start();
+    // } catch (IOException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
+    // fakeDS = new FakeDS();
+    // File f = new File("/home/lvuser/testing123");
+    // try {
+    //   f.createNewFile();
+    // } catch (IOException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
   }
 
   /**
@@ -54,16 +133,32 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    // ProcessBuilder pb = new ProcessBuilder("touch /home/lvuser/testing123");
+    // try {
+    //   Process p = pb.start();
+    // } catch (IOException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
+    // fakeDS.start();
+    // File f = new File("/home/lvuser/testing123");
+    // try {
+    //   f.createNewFile();
+    // } catch (IOException e) {
+    //   // TODO Auto-generated catch block
+    //   e.printStackTrace();
+    // }
   }
 
   @Override
   public void disabledPeriodic() {
-    if (m_robotContainer.haveIStartedFakeDS == false) {
-      if (m_robotContainer.testbenchSubsystem.keySwitch.get() == false) {
-        m_robotContainer.ds.start();
-        m_robotContainer.haveIStartedFakeDS = true;
-      }
-    }
+    // if (m_robotContainer.haveIStartedFakeDS == false) {
+    //   if (m_robotContainer.testbenchSubsystem.keySwitch.get() == false) {
+    //     m_robotContainer.ds.start();
+    //     m_robotContainer.haveIStartedFakeDS = true;
+    //   }
+    // }
+    // DriverStation.reportWarning("ehh", false);
   }
 
   /**

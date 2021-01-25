@@ -38,6 +38,15 @@ public class RobotMap {
   public static final double SUCCC0_OFFSPEED = 0.00;
 
   public static final int SWERVE0_ENCODER_ANALOG = 0;
+  public static final double SWERVE0_ENCODER_MAXV = 4.79;
+  // The k value is determined by putting the swerve in the 90 degree
+  // position, and then determining the reported angle. The k value is
+  // equal to (90.0 - reportedAngle).
+  public static final double SWERVE_SCHWANZ_BR_K = 90.0 - 37.6;
+  public static final double SWERVE_SCHWANZ_BL_K = 0d;
+  public static final double SWERVE_SCHWANZ_FR_K = 0d;
+  public static final double SWERVE_SCHWANZ_FL_K = 0d;
+  public static final double SWERVE0_ENCODER_K = SWERVE_SCHWANZ_BR_K;
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
@@ -49,3 +58,4 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 }
+ 

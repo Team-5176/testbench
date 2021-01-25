@@ -32,7 +32,7 @@ public class TestbenchCommand extends CommandBase {
   @Override
   public void initialize() {
     talonsrx0InitialState = testbenchSubsystem.talonsrx0Switch.get();
-    victorsp0InitialState = testbenchSubsystem.victorsp0Switch.get();
+    // victorsp0InitialState = testbenchSubsystem.victorsp0Switch.get();
     sparkmax0InitialState = testbenchSubsystem.sparkmax0Switch.get();
     air0InitialState = testbenchSubsystem.air0Switch.get();
     succc0InitialState = testbenchSubsystem.succc0Switch.get();
@@ -53,11 +53,11 @@ public class TestbenchCommand extends CommandBase {
     }
     DriverStation.reportWarning("key:"+testbenchSubsystem.keySwitch.get(), false);
 
-    if (testbenchSubsystem.victorsp0Switch.get() != victorsp0InitialState) {
-      testbenchSubsystem.victorsp0.set(RobotMap.VICTORSP0_ONSPEED);
-    } else {
-      testbenchSubsystem.victorsp0.set(RobotMap.VICTORSP0_OFFSPEED);
-    }
+    // if (testbenchSubsystem.victorsp0Switch.get() != victorsp0InitialState) {
+    //   testbenchSubsystem.victorsp0.set(RobotMap.VICTORSP0_ONSPEED);
+    // } else {
+    //   testbenchSubsystem.victorsp0.set(RobotMap.VICTORSP0_OFFSPEED);
+    // }
 
     // DriverStation.reportWarning("sparkmax0switch:" + testbenchSubsystem.sparkmax0Switch.get(), false);
     if (testbenchSubsystem.sparkmax0Switch.get() != sparkmax0InitialState) {
@@ -84,6 +84,10 @@ public class TestbenchCommand extends CommandBase {
     testbenchSubsystem.s1.set(true);
     testbenchSubsystem.s2.set(true);
     testbenchSubsystem.s3.set(true);
+
+    // SmartDashboard.putNumber("swerve0Encoder", testbenchSubsystem.swerve0Encoder.getRawAngle().getDegrees());
+    SmartDashboard.putNumber("swerve0Encoder", testbenchSubsystem.swerve0Encoder.get5176Angle());
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -93,7 +97,7 @@ public class TestbenchCommand extends CommandBase {
   }
 
   // Called once after isFinished returns true
-  @Override
+  @Override 
   public void end(boolean interrupted) {
   }
 
