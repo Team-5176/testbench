@@ -18,7 +18,8 @@ import frc.robot.subsystems.TestbenchSubsystem;
 public class TestbenchCommand extends CommandBase {
   private boolean talonsrx0InitialState = true;
   private TestbenchSubsystem testbenchSubsystem;
-  private boolean victorsp0InitialState = true;
+  // private boolean victorsp0InitialState = true;
+  private boolean solenoidInitialState = false; //true = open false = closed
   private boolean sparkmax0InitialState = true;
   private boolean air0InitialState = true;
   private boolean succc0InitialState = true;
@@ -33,6 +34,7 @@ public class TestbenchCommand extends CommandBase {
   public void initialize() {
     talonsrx0InitialState = testbenchSubsystem.talonsrx0Switch.get();
     // victorsp0InitialState = testbenchSubsystem.victorsp0Switch.get();
+    solenoidInitialState = testbenchSubsystem.testSolenoidSwitch.get();
     sparkmax0InitialState = testbenchSubsystem.sparkmax0Switch.get();
     air0InitialState = testbenchSubsystem.air0Switch.get();
     succc0InitialState = testbenchSubsystem.succc0Switch.get();
@@ -80,10 +82,12 @@ public class TestbenchCommand extends CommandBase {
       DriverStation.reportWarning("SUCCC0_OFF", false);
     }
 
-    testbenchSubsystem.s0.set(true);
-    testbenchSubsystem.s1.set(true);
-    testbenchSubsystem.s2.set(true);
-    testbenchSubsystem.s3.set(true);
+    // testbenchSubsystem.s0.set(true);
+    // testbenchSubsystem.s1.set(true);
+    // testbenchSubsystem.s2.set(true);
+    // testbenchSubsystem.s3.set(true);
+
+    testbenchSubsystem.s0.set(testbenchSubsystem.testSolenoidSwitch.get());
 
     // SmartDashboard.putNumber("swerve0Encoder", testbenchSubsystem.swerve0Encoder.getRawAngle().getDegrees());
     SmartDashboard.putNumber("swerve0Encoder", testbenchSubsystem.swerve0Encoder.get5176Angle());

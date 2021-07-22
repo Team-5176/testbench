@@ -58,4 +58,6 @@ public class TestbenchSubsystem extends SubsystemBase {
   public MA3AnalogEncoder swerve0Encoder = new MA3AnalogEncoder(RobotMap.SWERVE0_ENCODER_ANALOG, RobotMap.SWERVE0_ENCODER_MAXV, RobotMap.SWERVE0_ENCODER_K);
   // public AnalogInput swerve0Encoder = new AnalogInput(RobotMap.SWERVE0_ENCODER_ANALOG);
 
+  public DigitalInput testSolenoidSwitch = new DigitalInput(RobotMap.VICTORSP0_DIO);
+
 }
